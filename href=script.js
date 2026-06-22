@@ -19,10 +19,7 @@ function appendNumber(number) {
         shouldResetDisplay = false;
     }
     
-    // Prevent multiple decimals
     if (number === '.' && currentInput.includes('.')) return;
-    
-    // Prevent leading zeros
     if (number === '0' && currentInput === '0') return;
     
     currentInput += number;
@@ -75,9 +72,7 @@ function calculate() {
             return;
     }
     
-    // Round to avoid floating point issues
     result = Math.round(result * 1000000) / 1000000;
-    
     currentInput = result.toString();
     operator = null;
     previousInput = '';
@@ -105,21 +100,18 @@ function deleteLast() {
     updateDisplay(currentInput || '0');
 }
 
-// Handle keyboard support (Bonus feature)
+// Keyboard support
 function handleKeyboard(e) {
     const key = e.key;
     
-    // Numbers
     if (/[0-9]/.test(key)) {
         e.preventDefault();
         appendNumber(key);
     }
-    // Decimal
     else if (key === '.') {
         e.preventDefault();
         appendNumber('.');
     }
-    // Operators
     else if (key === '+') {
         e.preventDefault();
         chooseOperator('+');
@@ -136,24 +128,21 @@ function handleKeyboard(e) {
         e.preventDefault();
         chooseOperator('/');
     }
-    // Equals
     else if (key === 'Enter' || key === '=') {
         e.preventDefault();
         calculate();
     }
-    // Clear
     else if (key === 'Escape') {
         e.preventDefault();
         clearAll();
     }
-    // Delete
     else if (key === 'Backspace') {
         e.preventDefault();
         deleteLast();
     }
 }
 
-// Add event listeners to all buttons
+// Event listeners
 document.querySelectorAll('.btn').forEach(button => {
     button.addEventListener('click', () => {
         const text = button.textContent;
@@ -176,14 +165,8 @@ document.querySelectorAll('.btn').forEach(button => {
     });
 });
 
-// Keyboard event listener (Bonus feature)
+// Keyboard events
 document.addEventListener('keydown', handleKeyboard);
-
-// Add keyboard hint
-const hint = document.createElement('div');
-hint.className = 'keyboard-hint';
-hint.textContent = '💡 Tip: Use keyboard! (0-9, +, -, *, /, Enter, Escape, Backspace)';
-document.querySelector('.calculator').appendChild(hint);
 
 // Initial display
 updateDisplay('0');
