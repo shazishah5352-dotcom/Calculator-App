@@ -62,7 +62,7 @@ body {
     border-radius: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: #e0e3e6;
+    background: #f1f5f9;
     color: #1e293b;
 }
 
@@ -116,6 +116,13 @@ body {
     grid-column: span 2;
 }
 
+.keyboard-hint {
+    text-align: center;
+    margin-top: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
 /* Responsive Design */
 @media (max-width: 400px) {
     .calculator {
@@ -132,12 +139,4 @@ body {
         height: 70px;
         font-size: 2rem;
     }
-}
-
-/* Keyboard support indicator */
-.keyboard-hint {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 0.8rem;
-    color: #64748b;
 }
